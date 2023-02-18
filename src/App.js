@@ -43,31 +43,22 @@ function App() {
     setContact(sortedPopularity);
   }
 
-  const deleteContact = (value) => {
-    setContact((oldValues) => {
-      return oldValues.filter((contact) => contact.id !== value);
-    });
-  };
 
-  // function deleteContact(contactId){
-
-  //     const filteredContact = contacts.filter(con => {
-  //       return con.id !==contactId
-  //     })
-  //     setContact(filteredContact)
-
-  // }
-  // let deleteContact = contactId => {
-  //   const filteredContact = contacts.filter(contact => {
-  //     return contact._id !== contactId
-  //   })
-  //   setContact(filteredContact)
-  // }
+  
+  function deleteContact(elemental) {
+    const sortedDeletedContacts = [...contact]
+    const sortedDeletedContactsArr = sortedDeletedContacts.filter((contact) => {
+      return elemental !== contact.id
+    })
+    setContact(sortedDeletedContactsArr)
+  }
+  
+ 
 
   return (
     <div className="App">
       <h2> Contact list</h2>
-      <button onClick={random2}>second random</button>
+      <button onClick={random2}>Add a random</button>
 
       <button onClick={sortContact}>Sort by Name</button>
       <button onClick={sortPopularity}>Sort by popularity</button>
@@ -80,8 +71,9 @@ function App() {
               <img src={contact.pictureUrl} alt="logo" />
             </li>
             <li>Popularity:{contact.popularity}</li>
-            {/* <button onClick={deleteContact}>delete contact</button> */}
-            <button onClick={() => deleteContact(contact)}> Delete</button>
+            <button onClick={() => deleteContact(contact.id)}>Delete</button>
+         
+         
           </table>
         );
       })}
@@ -91,32 +83,4 @@ function App() {
 
 export default App;
 
-// import { useState } from 'react';
 
-// export default function App() {
-//   const initialState = [
-//     { id: 1, name: 'Banana', amount: 5 },
-//     { id: 2, name: 'Apple', amount: 6 },
-//   ];
-
-//   const removeSecond = () => {
-//     setFruits((current) =>
-//       current.filter((fruit) => fruit.id !== 2)
-//     );
-//   };
-
-//   const [fruits, setFruits] = useState(initialState);
-
-//   return (
-//     <div style={{ margin: '16px' }}>
-//       <button onClick={removeSecond}>Remove second</button>
-//       {fruits.map((fruit) => (
-//         <div key={fruit.id}>
-//           <h2>Name: {fruit.name}</h2>
-//           <h2>Amount: {fruit.amount}</h2>
-//           <hr />
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
