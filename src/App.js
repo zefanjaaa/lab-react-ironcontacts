@@ -5,84 +5,70 @@ import { useState } from "react";
 function App() {
   const [contact, setContact] = useState(contacts.slice(0, 5));
 
-  // const slicedContacts = contacts.slice(0, 5);
-
-
-
-  function RandomContact() {
-    function newRandomContact() {
-      return contacts.floor[Math.random() * contacts.length];
-    }
-    // setContact(newRandomContact);
-    console.log(newRandomContact())
-  }
-  // items[Math.floor(Math.random()*items.length)];
-
   function random2() {
-    console.log(contacts)
-    let randomItem = contacts[Math.floor(Math.random() * contacts.length)]
-    console.log(randomItem)
-    setContact([randomItem])
+    console.log(contacts);
+    let randomItem = contacts[Math.floor(Math.random() * contacts.length)];
+    console.log(randomItem);
+    setContact([randomItem]);
 
-    let newState = [...contact]
-newState.push(randomItem)
-    setContact(newState)
+    let newState = [...contact];
+    newState.push(randomItem);
+    setContact(newState);
   }
 
   function sortContact() {
-    const sortedContacts = [...contacts]
+    const sortedContacts = [...contact];
     sortedContacts.sort((a, b) => {
       if (a.name < b.name) {
-        return -1
+        return -1;
       } else if (b.name < a.name) {
-        return 1
+        return 1;
       } else {
-        return 0
+        return 0;
       }
-    })
-    setContact(sortedContacts)
+    });
+    setContact(sortedContacts);
   }
 
   function sortPopularity() {
-    const sortedPopularity = [...contacts]
+    const sortedPopularity = [...contact];
     sortedPopularity.sort((a, b) => {
       if (a.popularity < b.popularity) {
-        return 1
+        return 1;
       } else if (b.popularity < a.popularity) {
-        return -1
-      } 
-      return 0
-    })
-    setContact(sortedPopularity)
+        return -1;
+      }
+      return 0;
+    });
+    setContact(sortedPopularity);
   }
 
-  const deleteContact = value => {
-    setContact(oldValues => {
-      return oldValues.filter(contact => contact.id !== value)
-    })
-  }
+  const deleteContact = (value) => {
+    setContact((oldValues) => {
+      return oldValues.filter((contact) => contact.id !== value);
+    });
+  };
 
   // function deleteContact(contactId){
-     
+
   //     const filteredContact = contacts.filter(con => {
   //       return con.id !==contactId
   //     })
   //     setContact(filteredContact)
-    
+
   // }
-    // let deleteContact = contactId => {
-    //   const filteredContact = contacts.filter(contact => {
-    //     return contact._id !== contactId
-    //   })
-    //   setContact(filteredContact)
-    // }
-   
-  
+  // let deleteContact = contactId => {
+  //   const filteredContact = contacts.filter(contact => {
+  //     return contact._id !== contactId
+  //   })
+  //   setContact(filteredContact)
+  // }
+
   return (
     <div className="App">
       <h2> Contact list</h2>
       <button onClick={random2}>second random</button>
-      <button onClick={RandomContact}>Add new random contact</button>
+
       <button onClick={sortContact}>Sort by Name</button>
       <button onClick={sortPopularity}>Sort by popularity</button>
       {contact.map((contact) => {
@@ -96,9 +82,7 @@ newState.push(randomItem)
             <li>Popularity:{contact.popularity}</li>
             {/* <button onClick={deleteContact}>delete contact</button> */}
             <button onClick={() => deleteContact(contact)}> Delete</button>
-
           </table>
-          
         );
       })}
     </div>
