@@ -43,17 +43,13 @@ function App() {
     setContact(sortedPopularity);
   }
 
-
-  
   function deleteContact(elemental) {
-    const sortedDeletedContacts = [...contact]
+    const sortedDeletedContacts = [...contact];
     const sortedDeletedContactsArr = sortedDeletedContacts.filter((contact) => {
-      return elemental !== contact.id
-    })
-    setContact(sortedDeletedContactsArr)
+      return elemental !== contact.id;
+    });
+    setContact(sortedDeletedContactsArr);
   }
-  
- 
 
   return (
     <div className="App">
@@ -65,16 +61,24 @@ function App() {
       {contact.map((contact) => {
         return (
           <table>
-            <li>Name:{contact.name}</li>
-            <li>
-              Picture:
-              <img src={contact.pictureUrl} alt="logo" />
-            </li>
-            <li>Popularity:{contact.popularity}</li>
-            <button onClick={() => deleteContact(contact.id)}>Delete</button>
-         
-         
-          </table>
+  <tr>
+    <th>Picture </th>
+    <th>Name </th>
+    <th>Popularity </th>
+    <th>Won Oscar</th>
+    <th>Won Emmy</th>
+    <th>Action</th>
+  </tr>
+
+  <tr>
+    <td><img src={contact.pictureUrl} alt="logo" className="photo" /></td>
+    <td>{contact.name}</td>
+    <td>{contact.popularity}</td>
+    <td>{contact.wonOscar ? <p>🏆</p> : <p>No </p>}</td>
+    <td>{contact.wonEmmy ? <p> 🏆</p> : <p>No</p>}</td>
+    <button onClick={() => deleteContact(contact.id)}>Delete</button>
+  </tr>
+</table>
         );
       })}
     </div>
